@@ -1,18 +1,16 @@
 import React from 'react';
-import '../assets/css/PostForm.css';
 
 const PostForm = (props) => {
-	const { values, submit, change } = props;
+	const { change, submit, values } = props;
 
-	const onSubmit = (evt) => {
-		evt.preventDefault();
-		submit();
+	const onChange = (e) => {
+		const { name, value } = e.target;
+		change(name, value);
 	};
 
-	const onChange = (evt) => {
-		const { name, value, checked, type } = evt.target;
-		const realValue = type === 'checkbox' ? checked : value; // must do this so checkbox shows an actual value
-		change(name, realValue);
+	const onSubmit = (e) => {
+		e.preventDefault();
+		submit();
 	};
 
 	return (
