@@ -35,7 +35,11 @@ export default function App(props) {
 					<Link to='./locations' className='w3-bar-item w3-button'>
 						LOCATIONS
 					</Link>
-					<Link to='./order' className='w3-bar-item w3-button'>
+					<Link
+						to='./pizza'
+						className='w3-bar-item w3-button'
+						id='order-pizza'
+					>
 						ORDER FORM
 					</Link>
 					<Link to='./contact' className='w3-bar-item w3-button'>
@@ -52,7 +56,7 @@ export default function App(props) {
 				<Route path='/locations'>
 					<Locations locations={locations} />
 				</Route>
-				<Route path='/order'>
+				<Route path='/pizza'>
 					<OrderForm />
 				</Route>
 				<Route path='/success'>
