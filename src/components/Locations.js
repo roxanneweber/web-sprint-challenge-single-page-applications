@@ -8,7 +8,7 @@ export default function Locations(props) {
 
 	return (
 		<div className='container'>
-			<h1>Select your Restaurant</h1>
+			<h1>Select your Restaurant Location</h1>
 			<div className='items-list-wrapper'>
 				{locations.map((item) => (
 					<div className='item-card' key={item.id}>
@@ -18,8 +18,8 @@ export default function Locations(props) {
 								src={item.img_URL}
 								alt={item.name}
 							/>
-							<p>Click to select >></p>
 							<h2>{item.name}</h2>
+							<button>Click to Order</button>
 						</Link>
 					</div>
 				))}

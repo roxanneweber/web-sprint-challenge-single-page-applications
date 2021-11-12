@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import { Forms } from 'react-bootstrap';
 import axios from 'axios';
 
 import './assets/css/App.css';
@@ -7,27 +8,60 @@ import './assets/css/fonts.css';
 
 import Home from './components/Home';
 import Locations from './components/Locations';
-import OrderForm from './components/OrderForm';
 import Success from './components/Success';
-import Contact from './components/Contact';
+import PostForm from './components/PostForm';
 
 // pull in my dummy location data
 import data from './assets/data';
+
+// create initial values for each form field
+const initialFormValues = {
+	orderLocation: '',
+	size: '',
+	pepperoni: false,
+	sausage: false,
+};
 
 export default function App() {
 	//console.log(props);
 
 	// set the slices of state for locations, orders and formInputs
+	// set the slices of state for locations, orders and formInputs
 	const [locations, setLocations] = useState([]);
+	const [orders, setOrders] = useState([]);
+	const [formValues, setFormValues] = useState(initialFormValues);
 
+	// location data
 	function fetchLocations() {
 		return Promise.resolve({ success: true, data });
 	}
-
-	// where to get location and story location info
 	useEffect(() => {
 		fetchLocations().then((res) => setLocations(res.data));
 	}, []);
+
+	//form update handler
+	const updateForm = (name, value) => {
+		setFormValues({ ...formValues, [name]: value });
+	};
+
+	// submit form handler
+	const submitForm = () => {
+		const newOrder = {
+			orderLocation: formValues.orderLocation,
+			size: formValues.size,
+			pepperoni: formValues.pepperoni,
+			sausage: formValues.sausage,
+		};
+		//then post the information
+		axios
+			.post('https://reqres.in/', newOrder)
+			.then((res) => {
+				//console.log(res);
+				const order = res.data;
+				setOrders([newOrder, ...orders]);
+			})
+			.catch((err) => console.error(err));
+	};
 
 	return (
 		<div className='App'>
@@ -44,10 +78,7 @@ export default function App() {
 						className='w3-bar-item w3-button'
 						id='order-pizza'
 					>
-						ORDER FORM
-					</Link>
-					<Link to='./contact' className='w3-bar-item w3-button'>
-						CONTACT
+						ORDER PIZZA
 					</Link>
 				</div>
 			</nav>
@@ -61,13 +92,14 @@ export default function App() {
 					<Locations locations={locations} />
 				</Route>
 				<Route path='/pizza'>
-					<OrderForm locations={locations} />
+					<PostForm
+						update={updateForm}
+						submit={submitForm}
+						values={formValues}
+					/>
 				</Route>
 				<Route path='/success'>
 					<Success />
-				</Route>
-				<Route path='/contact'>
-					<Contact />
 				</Route>
 				<Route path='/'>
 					<Home />

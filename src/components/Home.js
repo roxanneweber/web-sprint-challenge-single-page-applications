@@ -11,6 +11,13 @@ export default function Home() {
 		history.push('/locations');
 	};
 
+	const initialFormValues = {
+		orderLocation: '',
+		size: '',
+		pepperoni: false,
+		sausage: false,
+	};
+
 	return (
 		<div
 			className='display-container w3-display-container w3-grayscale-min'
