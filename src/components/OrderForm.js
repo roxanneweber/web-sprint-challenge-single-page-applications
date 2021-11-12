@@ -9,6 +9,7 @@ export default function OrderForm(props) {
 			<h1>Casey's Pizza Pub Order Form</h1>
 			<section id='form'>
 				<form id='pizza-form'></form>
+				<p>{props.locations.name}</p>
 				<button id='order-button'>Submit</button>
 			</section>
 		</div>

@@ -61,7 +61,7 @@ export default function App() {
 					<Locations locations={locations} />
 				</Route>
 				<Route path='/pizza'>
-					<OrderForm />
+					<OrderForm locations={locations} />
 				</Route>
 				<Route path='/success'>
 					<Success />
