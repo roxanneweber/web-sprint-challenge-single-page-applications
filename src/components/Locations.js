@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../assets/css/Locations.css';
 import '../assets/css/fonts.css';
-import OrderForm from './OrderForm';
 import axios from 'axios';
-import Success from './Success';
 
 // create initial values for each form field
 const initialFormValues = {
@@ -68,12 +66,6 @@ export default function Locations(props) {
 					</div>
 				))}
 			</div>
-
-			{/* <OrderForm
-			// values={formValues}
-			// update={updateForm}
-			// submit={submitForm}
-			/> */}
 		</div>
 	);
 }
