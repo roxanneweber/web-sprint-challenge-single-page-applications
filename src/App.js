@@ -58,10 +58,14 @@ export default function App() {
 			.then((res) => {
 				//console.log(res);
 				const order = res.data;
-				setOrders([newOrder, ...orders]);
+				setOrders([newOrder, ...order]);
 			})
 			.catch((err) => console.error(err));
 	};
+
+	useEffect(() => {
+		axios.get('https://reqres.in/').then((res) => setOrders(res.data));
+	}, []);
 
 	return (
 		<div className='App'>
@@ -96,6 +100,7 @@ export default function App() {
 						update={updateForm}
 						submit={submitForm}
 						values={formValues}
+						locations={locations}
 					/>
 				</Route>
 				<Route path='/success'>
