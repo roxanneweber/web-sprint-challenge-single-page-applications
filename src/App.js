@@ -95,7 +95,7 @@ export default function App() {
 				<Route path='/locations'>
 					<Locations locations={locations} />
 				</Route>
-				<Route path='/pizza'>
+				<Route id='order-pizza' path='/pizza'>
 					<PostForm
 						update={updateForm}
 						submit={submitForm}

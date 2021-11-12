@@ -18,11 +18,25 @@ const PostForm = (props) => {
 		<div className='form-wrapper'>
 			<h1 className='top'>Build your Pizza!</h1>
 
-			<form className='form container' onSubmit={onSubmit}>
+			<form className='form container' id='pizza-form' onSubmit={onSubmit}>
+				<label>
+					Your name:
+					<input
+						id='name-input'
+						type='text'
+						name='name'
+						onChange={onChange}
+					/>
+				</label>
 				<div className='form-group inputs'>
 					<p>Choice of Size *required </p>
 					<label>
-						<select value={values.size} name='size' onChange={onChange}>
+						<select
+							value={values.size}
+							name='size'
+							id='size-dropdown'
+							onChange={onChange}
+						>
 							<option value=''>---select size---</option>
 							<option value='largestSize'>LARGEST Sprint Size</option>
 							<option value='xLarge'>X-Large</option>
@@ -165,6 +179,7 @@ const PostForm = (props) => {
 						<p>Special Instructions</p>
 						<label>
 							<input
+								id='special-text'
 								type='textarea'
 								name='instructions'
 								onChange={onChange}
