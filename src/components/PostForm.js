@@ -1,51 +1,24 @@
 import React from 'react';
+import '../assets/css/PostForm.css';
 
 const PostForm = (props) => {
-	const { change, submit, values } = props;
+	const { values, submit, change } = props;
 
-	const onChange = (e) => {
-		const { name, value } = e.target;
-		change(name, value);
+	const onSubmit = (evt) => {
+		evt.preventDefault();
+		submit();
 	};
 
-	const onSubmit = (e) => {
-		e.preventDefault();
-		submit();
+	const onChange = (evt) => {
+		const { name, value, checked, type } = evt.target;
+		const realValue = type === 'checkbox' ? checked : value; // must do this so checkbox shows an actual value
+		change(name, realValue);
 	};
 
 	return (
 		<div className='form-wrapper'>
-			<form onSubmit={onSubmit}>
-				<label>
-					Title
-					<input
-						type='text'
-						name='title'
-						value={values.title}
-						onChange={onChange}
-						placeholder='Title'
-					/>
-				</label>
-				<label>
-					Content
-					<textarea
-						name='content'
-						value={values.content}
-						onChange={onChange}
-						placeholder='Content'
-					/>
-				</label>
-				<label>
-					Tags (separate by commas no space)
-					<input
-						type='text'
-						name='tags'
-						value={values.tags}
-						onChange={onChange}
-						placeholder='Put cha tags here'
-					/>
-				</label>
-				<input type='submit' value='POST IT BOO YAH!' />
+			<form>
+				<input type='submit' value='Send your Order!' />
 			</form>
 		</div>
 	);
