@@ -2,7 +2,7 @@ import React from 'react';
 
 const PostForm = (props) => {
 	const { update, submit, values, locations } = props;
-	console.log(props);
+	//console.log(props);
 
 	const onChange = (evt) => {
 		const { name, value } = evt.target;
@@ -16,7 +16,7 @@ const PostForm = (props) => {
 
 	return (
 		<div className='form-wrapper'>
-			<h1>Build your Pizza!</h1>
+			<h1 className='top'>Build your Pizza!</h1>
 
 			<form className='form container' onSubmit={onSubmit}>
 				<div className='form-group inputs'>
@@ -30,6 +30,147 @@ const PostForm = (props) => {
 							<option value='Small'>Small</option>
 						</select>
 					</label>
+					<div className='form-group inputs radio'>
+						<p>Choice of Sauce *required</p>
+						<label>
+							Original Red
+							<input
+								type='radio'
+								name='sauce'
+								value='original'
+								onChange={onChange}
+								checked={values.sauce === 'original'}
+							/>
+						</label>
+						<br />
+						<label>
+							Garlic Ranch
+							<input
+								type='radio'
+								name='sauce'
+								value='garlicRanch'
+								onChange={onChange}
+								checked={values.sauce === 'garlicRanch'}
+							/>
+						</label>
+						<br />
+						<label>
+							BBQ Sauce
+							<input
+								type='radio'
+								name='sauce'
+								value='bbq'
+								onChange={onChange}
+								checked={values.sauce === 'bbq'}
+							/>
+						</label>
+						<br />
+						<label>
+							Spinach Alfredo
+							<input
+								type='radio'
+								name='sauce'
+								value='spinachAlfredo'
+								onChange={onChange}
+								checked={values.sauce === 'spinachAlfredo'}
+							/>
+						</label>
+					</div>
+					<div className='form-group inputs'>
+						<p>Add Toppings *choose up to 10</p>
+						<div className='some-page-wrapper'>
+							<div className='row'>
+								<div className='column'>
+									{' '}
+									<label>
+										Pepperoni
+										<input
+											type='checkbox'
+											name='pepperoni'
+											checked={values.pepperoni}
+											onChange={onChange}
+										/>
+									</label>
+								</div>
+								<div className='column'>
+									{' '}
+									<label>
+										Diced Tomatoes
+										<input
+											type='checkbox'
+											name='tomatoes'
+											checked={values.tomatoes}
+											onChange={onChange}
+										/>
+									</label>
+								</div>
+							</div>
+
+							<div className='row'>
+								<div className='column'>
+									{' '}
+									<label>
+										Sausage
+										<input
+											type='checkbox'
+											name='sausage'
+											checked={values.sausage}
+											onChange={onChange}
+										/>
+									</label>
+								</div>
+								<div className='column'>
+									{' '}
+									<label>
+										Black Olives
+										<input
+											type='checkbox'
+											name='blackOlives'
+											checked={values.blackOlives}
+											onChange={onChange}
+										/>
+									</label>
+								</div>
+							</div>
+
+							<div className='row'>
+								<div className='column'>
+									{' '}
+									<label>
+										Canadian Bacon
+										<input
+											type='checkbox'
+											name='canadianBacon'
+											checked={values.canadianBacon}
+											onChange={onChange}
+										/>
+									</label>
+								</div>
+								<div className='column'>
+									{' '}
+									<label>
+										Roasted Garlic
+										<input
+											type='checkbox'
+											name='roastedGarlic'
+											checked={values.roastedGarlic}
+											onChange={onChange}
+										/>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className='form-group inputs'>
+						<p>Special Instructions</p>
+						<label>
+							<input
+								type='textarea'
+								name='instructions'
+								onChange={onChange}
+							/>
+						</label>
+					</div>
 
 					<div className='submit'>
 						<h1>
