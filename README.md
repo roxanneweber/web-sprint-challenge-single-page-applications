@@ -57,9 +57,20 @@ following free-form questions. Edit this document to include your answers after
 each question.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+   ===This is used so that we can return a number of objects that contain
+   particular information, such as an item number, or a store location. I used
+   it in this application to pull data that would push a location prop to the
+   form.
+
 1. How would you explain form validation to someone who has never programmed
-   before?
-1. In 1-2 sentences, define end to end testing.
+   before? ==Form validation allows a programmer to find and fix bugs before
+   production, and also acts as a footprint for future testing.
+
+1. In 1-2 sentences, define end to end testing. ==End to end testing means all
+   elements of an application are tested. The programmer will test that forms
+   can be completed, that they post to the right place, that certain elements
+   are found on the page, or even that certain element IDs are included. This is
+   the most thorough way a developer can ensure the longevity of their code.
 
 ## Instructions
 
@@ -87,7 +98,7 @@ Your finished project must include all of the following requirements:
 -  [ ] A dropdown for pizza size with an id of "size-dropdown"
 -  [ ] A checklist for toppings - at least 4 (hint: name each separately!)
 -  [ ] Text input for special instructions with an id of "special-text"
--  [ ] An Add to Order button that has an id of "order-button" and that submits
+-  [x] An Add to Order button that has an id of "order-button" and that submits
        form and returns a database record of name, size, toppings and special
        instructions
 
@@ -158,6 +169,6 @@ Set up your fork on Github to codegrade following the instructions
 [here](https://lambdaschool.instructure.com/courses/1675/assignments/51399?module_item_id=617624),
 pushing commits to your main branch.
 
--  [ ] Your code will be reviewed over the next few days. Read
+-  [x] Your code will be reviewed over the next few days. Read
        [these instructions](https://www.notion.so/How-to-View-Feedback-in-CodeGrade-c5147cee220c4044a25de28bcb6bb54a)
        to learn how to view feedback in CodeGrade.
