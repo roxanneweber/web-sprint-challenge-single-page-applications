@@ -35,6 +35,7 @@ export default function Home() {
 				</span>
 				<p>
 					<button
+						id='order-btn'
 						onClick={routeToMenu}
 						className='w3-button w3-xxlarge w3-black'
 					>

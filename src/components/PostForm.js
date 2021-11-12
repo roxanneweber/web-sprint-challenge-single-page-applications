@@ -189,7 +189,7 @@ const PostForm = (props) => {
 
 					<div className='submit'>
 						<h1>
-							<button>Send your order!</button>
+							<button id='submit-btn'>Send your order!</button>
 						</h1>
 					</div>
 				</div>
