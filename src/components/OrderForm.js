@@ -6,10 +6,7 @@ import '../assets/css/fonts.css';
 export default function OrderForm(props) {
 	return (
 		<div className='items-list-wrapper'>
-			<header>
-				{' '}
-				<h1>Casey's Pizza Pub Order Form</h1>
-			</header>
+			<h1>Casey's Pizza Pub Order Form</h1>
 			<section id='form'>
 				<form id='pizza-form'></form>
 				<button id='order-button'>Submit</button>

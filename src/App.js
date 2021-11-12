@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 
 import './assets/css/App.css';
 import './assets/css/fonts.css';
@@ -10,19 +11,22 @@ import OrderForm from './components/OrderForm';
 import Success from './components/Success';
 import Contact from './components/Contact';
 
-// Dummy data
+// pull in my dummy location data
 import data from './assets/data';
 
-function fetchFoodItems() {
-	// simulate getting data through axios
-	return Promise.resolve({ success: true, data });
-}
+export default function App() {
+	//console.log(props);
 
-export default function App(props) {
+	// set the slices of state for locations, orders and formInputs
 	const [locations, setLocations] = useState([]);
 
+	function fetchLocations() {
+		return Promise.resolve({ success: true, data });
+	}
+
+	// where to get location and story location info
 	useEffect(() => {
-		fetchFoodItems().then((res) => setLocations(res.data));
+		fetchLocations().then((res) => setLocations(res.data));
 	}, []);
 
 	return (
