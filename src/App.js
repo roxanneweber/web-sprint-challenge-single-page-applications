@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import * as yup from 'yup';
 
 import axios from 'axios';
 
@@ -16,10 +17,19 @@ import data from './assets/data';
 
 // create initial values for each form field
 const initialFormValues = {
-	orderLocation: '',
+	name: '',
 	size: '',
+	original: false,
+	garlicRanch: false,
+	bbq: false,
+	spinachAlfredo: false,
 	pepperoni: false,
+	tomatoes: false,
 	sausage: false,
+	blackOlives: false,
+	canadianBacon: false,
+	roastedGarlic: false,
+	instructions: '',
 };
 
 export default function App() {
@@ -39,6 +49,15 @@ export default function App() {
 		fetchLocations().then((res) => setLocations(res.data));
 	}, []);
 
+	const validate = (name, value) => {
+		yup.reach(schema, name)
+			.validate(value)
+			.then(() => setFormErrors({ ...formErrors, [name]: '' }))
+			.catch((err) =>
+				setFormErrors({ ...formErrors, [name]: err.errors[0] })
+			);
+	};
+
 	//form update handler
 	const updateForm = (name, value) => {
 		setFormValues({ ...formValues, [name]: value });
@@ -47,18 +66,25 @@ export default function App() {
 	// submit form handler
 	const submitForm = () => {
 		const newOrder = {
-			orderLocation: formValues.orderLocation,
+			name: formValues.name,
 			size: formValues.size,
-			pepperoni: formValues.pepperoni,
-			sausage: formValues.sausage,
+			sauce: formValues.sauce,
+			toppings: [
+				'pepperoni',
+				'tomatoes',
+				'sausage',
+				'blackOlives',
+				'canadianBacon',
+				'roastedGarlic',
+			].filters((topping) => !!formValues[topping]),
 		};
 		//then post the information
 		axios
 			.post('https://reqres.in/', newOrder)
 			.then((res) => {
 				//console.log(res);
-				const order = res.data;
-				setOrders([newOrder, ...order]);
+				const orderDB = res.data;
+				setOrders([orderDB, ...orders]);
 			})
 			.catch((err) => console.error(err));
 	};

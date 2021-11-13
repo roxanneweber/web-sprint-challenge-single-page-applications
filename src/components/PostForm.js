@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PostForm = (props) => {
-	const { update, submit, values, locations } = props;
+	const { update, submit, values } = props;
 	//console.log(props);
 
 	const onChange = (evt) => {
