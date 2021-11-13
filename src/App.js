@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import * as yup from 'yup';
+import schema from './validation/formSchema';
 
 import axios from 'axios';
 
@@ -19,10 +20,7 @@ import data from './assets/data';
 const initialFormValues = {
 	name: '',
 	size: '',
-	original: false,
-	garlicRanch: false,
-	bbq: false,
-	spinachAlfredo: false,
+	sauce: '',
 	pepperoni: false,
 	tomatoes: false,
 	sausage: false,
@@ -32,6 +30,14 @@ const initialFormValues = {
 	instructions: '',
 };
 
+const initialFormErrors = {
+	name: '',
+	size: '',
+	sauce: '',
+};
+
+const initialDisabled = true;
+
 export default function App() {
 	//console.log(props);
 
@@ -40,6 +46,8 @@ export default function App() {
 	const [locations, setLocations] = useState([]);
 	const [orders, setOrders] = useState([]);
 	const [formValues, setFormValues] = useState(initialFormValues);
+	const [formErrors, setFormErrors] = useState(initialFormErrors); // object
+	const [disabled, setDisabled] = useState(initialDisabled);
 
 	// location data
 	function fetchLocations() {
@@ -49,6 +57,7 @@ export default function App() {
 		fetchLocations().then((res) => setLocations(res.data));
 	}, []);
 
+	//attempting some validation
 	const validate = (name, value) => {
 		yup.reach(schema, name)
 			.validate(value)
@@ -93,6 +102,11 @@ export default function App() {
 		axios.get('https://reqres.in/').then((res) => setOrders(res.data));
 	}, []);
 
+	//set errors and disable submit until all required are complete
+	useEffect(() => {
+		schema.isValid(formValues).then((valid) => setDisabled(!valid));
+	}, [formValues]);
+
 	return (
 		<div className='App'>
 			<nav>
@@ -127,6 +141,8 @@ export default function App() {
 						submit={submitForm}
 						values={formValues}
 						locations={locations}
+						errors={formErrors}
+						disabled={disabled}
 					/>
 				</Route>
 				<Route path='/success'>

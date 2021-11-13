@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PostForm = (props) => {
-	const { update, submit, values } = props;
+	const { update, submit, values, disabled, errors } = props;
 	//console.log(props);
 
 	const onChange = (evt) => {
@@ -38,10 +38,10 @@ const PostForm = (props) => {
 							onChange={onChange}
 						>
 							<option value=''>---select size---</option>
-							<option value='largestSize'>LARGEST Sprint Size</option>
-							<option value='xLarge'>X-Large</option>
-							<option value='Medium'>Medium</option>
-							<option value='Small'>Small</option>
+							<option value='largest'>LARGEST Sprint Size</option>
+							<option value='large'>X-Large</option>
+							<option value='medium'>Medium</option>
+							<option value='small'>Small</option>
 						</select>
 					</label>
 					<div className='form-group inputs radio'>
@@ -189,8 +189,15 @@ const PostForm = (props) => {
 
 					<div className='submit'>
 						<h1>
-							<button id='submit-btn'>Send your order!</button>
+							<button disabled={disabled} id='submit-btn'>
+								Send your order!
+							</button>
 						</h1>
+						<div className='errors'>
+							<div>{errors.name}</div>
+							<div>{errors.size}</div>
+							<div>{errors.sauce}</div>
+						</div>
 					</div>
 				</div>
 			</form>
